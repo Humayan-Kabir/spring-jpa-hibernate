@@ -1,4 +1,4 @@
-package com.kabir.project.spring_jpa_hibernate;
+package com.kabir.project.springjpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
