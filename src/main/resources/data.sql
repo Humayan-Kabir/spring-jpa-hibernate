@@ -8,8 +8,8 @@ create table person
 );
 
 INSERT INTO PERSON (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10001,  'Ranga', 'Hyderabad',current_timestamp());
+VALUES(10001,  'Ranga', 'Hyderabad',current_date());
 INSERT INTO PERSON (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10002,  'James', 'New York',current_timestamp());
+VALUES(10002,  'James', 'New York', current_date());
 INSERT INTO PERSON (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10003,  'Pieter', 'Amsterdam',current_timestamp());
+VALUES(10003,  'Pieter', 'Amsterdam',current_date());
