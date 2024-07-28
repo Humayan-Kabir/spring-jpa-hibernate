@@ -31,7 +31,7 @@ public class PersonController {
     @PutMapping("/persons")
     public Person updatePerson(@RequestBody Person person) {
         if(person.getId() == null || personRepository.findById(person.getId()) == null) {
-            throw new PersonNotFoundException("id is not present in body");
+            throw new PersonNotFoundException("id is not valid");
         }
         return personRepository.updatePerson(person);
     }
