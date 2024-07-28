@@ -1,5 +1,7 @@
 package com.kabir.project.springjpa;
 
+import com.kabir.project.springjpa.error.PersonNotFoundException;
+import org.apache.catalina.valves.JsonErrorReportValve;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,30 +11,33 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    PersonDao personDao;
+    PersonRepository personRepository;
 
     @GetMapping("/persons")
     public List<Person> findAll() {
-        return personDao.findAll();
+        return personRepository.findAll();
     }
 
     @GetMapping("/persons/{id}")
-    public Person findById(@PathVariable int id) {
-        return personDao.findById(id);
+    public Person findById(@PathVariable Long id) {
+        return personRepository.findById(id);
     }
 
     @PostMapping("/persons")
-    public int addPerson(Person person) {
-        return personDao.addPerson(person);
+    public Person addPerson(@RequestBody Person person) {
+        return personRepository.addPerson(person);
     }
 
     @PutMapping("/persons")
-    public int updatePerson(Person person) {
-        return personDao.updatePerson(person);
+    public Person updatePerson(@RequestBody Person person) {
+        if(person.getId() == null || personRepository.findById(person.getId()) == null) {
+            throw new PersonNotFoundException("id is not present in body");
+        }
+        return personRepository.updatePerson(person);
     }
 
     @DeleteMapping("/persons/{id}")
-    public int deleteById(int id) {
-        return personDao.deleteById(id);
+    public void deleteById(@PathVariable Long id) {
+       personRepository.deleteById(id);
     }
 }
